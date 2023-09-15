@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  new-router:
+    build: ./router
+    ports:
+      - "80:80"
+    links:
+      - new-api
+      - new-dashboard
+      - new-www
+    networks:
+      - my_network
+  new-www:
+    build: ./www
+    networks:
+      - my_network
+  new-api:
+    build: ./api
+    networks:
+      - my_network
+  new-dashboard:
+    build: ./dashboard
+    networks:
+      - my_network
+networks:
+  my_network:
+    driver: bridge
+    name: my_network

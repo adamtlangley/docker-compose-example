@@ -1,0 +1,13 @@
+server {
+        listen 80;
+        server_name newchallenge.ctf www.newchallenge.ctf;
+        root /var/www/www/public;
+        index index.php;
+        location / {
+                try_files $uri $uri/ /index.php?$args;
+        }
+        location ~ \.php$ {
+               include snippets/fastcgi-php.conf;
+               fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        }
+}
